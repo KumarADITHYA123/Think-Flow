@@ -70,7 +70,7 @@ export async function generateAIOutline(
     try {
       console.log(`Attempting outline generation with Groq key index ${i}...`);
       const { text } = await generateText({
-        model: groqClient("openai/gpt-oss-120b"),
+        model: groqClient("meta-llama/llama-4-scout-17b-16e-instruct"),
         system: systemPrompt,
         prompt: promptText,
       });
