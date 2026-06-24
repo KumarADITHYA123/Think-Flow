@@ -1,8 +1,8 @@
-# ResearchX ✨📚 - AI-Powered Document Research Generator
+# ThinkFlow ✨📚 - AI-Powered Document Research Generator
 
 ![alt text](src/app/opengraph-image.png)
 
-Generate comprehensive research documents instantly with the power of AI. Whether you're a student, researcher, or professional, ResearchX simplifies the research process and saves you time.
+Generate comprehensive research documents instantly with the power of AI. Whether you're a student, researcher, or professional, ThinkFlow simplifies the research process and saves you time.
 
 ## ✨ Features
 
@@ -11,14 +11,15 @@ Generate comprehensive research documents instantly with the power of AI. Whethe
 - 🎯 **Academic Precision** - Tailor content to different academic levels from high school to doctoral
 - 📊 **Multiple Export Formats** - Export your research as DOCX or PDF with proper formatting
 - 🌓 **Dark/Light Mode** - Comfortable viewing experience in any lighting condition
+- 🔄 **Multi-Key Rotation** - Automatic API key rotation with intelligent fallback
 - 🚀 **Built with Next.js 15** - Utilizing the latest web technologies for optimal performance
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) with App Router
+- **Framework**: [Next.js 15](https://nextjs.org/) with App Router & Turbopack
 - **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) for utility-first styling
 - **UI Components**: [Shadcn UI](https://ui.shadcn.com/) for beautiful, accessible components
-- **AI Integration**: [AI SDK](https://sdk.vercel.ai/docs) with Google Gemini models
+- **AI Integration**: [AI SDK](https://sdk.vercel.ai/docs) with Groq (LLaMA 3.3 70B) & ZenMux (GLM-4.7 Flash) fallback
 - **Animations**: [Motion](https://motion.dev/) for smooth transitions
 - **Document Generation**: DOCX and PDF export capabilities
 
@@ -34,8 +35,8 @@ Generate comprehensive research documents instantly with the power of AI. Whethe
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Xeven777/ai-research.git
-   cd ai-research
+   git clone https://github.com/KumarADITHYA123/Think-Flow.git
+   cd Think-Flow
    ```
 
 2. Install dependencies:
@@ -48,20 +49,18 @@ Generate comprehensive research documents instantly with the power of AI. Whethe
    bun install
    ```
 
-3. Create a `.env.local` file in the root directory with your API keys:
+3. Create a `.env` file in the root directory with your API keys:
 
-   ```
-   GOOGLE_GENERATIVE_AI_API_KEY=your_google_api_key
+   ```env
+   GROQ_API_KEYS=your_groq_key_1,your_groq_key_2
+   ZENMUX_API_KEY=your_zenmux_api_key
+   ZENMUX_BASE_URL=https://zenmux.ai/api/v1
    ```
 
 4. Start the development server:
 
    ```bash
    npm run dev
-   # or
-   yarn dev
-   # or
-   bun dev
    ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
@@ -75,7 +74,7 @@ Generate comprehensive research documents instantly with the power of AI. Whethe
 
 ## 🤝 Contributing
 
-Contributions are welcome! Feel free to open issues or submit pull requests to help improve ResearchX.
+Contributions are welcome! Feel free to open issues or submit pull requests to help improve ThinkFlow.
 
 ## 📄 License
 
@@ -83,7 +82,10 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👤 Contact
 
-Created by [Anish Biswas](https://github.com/Xeven777) - Feel free to reach out on [LinkedIn](https://www.linkedin.com/in/anishbiswas777/)!
+Created by **Kumar Adithya Bathula**
+
+- 🔗 [GitHub](https://github.com/kumarADITHYA123/)
+- 💼 [LinkedIn](https://www.linkedin.com/in/kumar-adithya-bathula-781938371/)
 
 ---
 
