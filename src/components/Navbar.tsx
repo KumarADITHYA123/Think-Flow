@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="flex items-center justify-center gap-2 px-2">
         <ThemeToggle />
         <a
-          href="https://github.com/Xeven777/ai-research"
+          href="https://github.com/KumarADITHYA123/Think-Flow"
           target="_blank"
           rel="noopener noreferrer"
         >
