@@ -393,12 +393,12 @@ const Page = () => {
         >
           Made by{" "}
           <a
-            href="http://anish7.me"
+            href="https://github.com/kumarADITHYA123/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:underline hover:text-primary duration-300 transition-all"
           >
-            Anish
+            Kumar Adithya
           </a>
         </p>
       </section>
