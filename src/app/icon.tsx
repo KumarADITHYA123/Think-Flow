@@ -11,18 +11,21 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 40,
-          background: "black",
+          fontSize: 34,
+          fontWeight: 800,
+          background: "linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#E1B10D",
-          borderRadius: "12px",
+          color: "white",
+          borderRadius: "16px",
+          fontFamily: "sans-serif",
+          letterSpacing: "-0.05em",
         }}
       >
-        Rx
+        TF
       </div>
     ),
     {
