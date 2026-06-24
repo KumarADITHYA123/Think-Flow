@@ -45,7 +45,7 @@ export async function generateAIContent(
     try {
       console.log(`Attempting content generation with Groq key index ${i}...`);
       const { text } = await generateText({
-        model: groqClient("llama-3.3-70b-versatile"),
+        model: groqClient("openai/gpt-oss-120b"),
         system: systemPrompt,
         prompt: promptText,
       });
