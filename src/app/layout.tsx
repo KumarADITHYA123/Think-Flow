@@ -18,15 +18,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Safely handle ViewTransition if it is undefined (e.g. during server-side pre-rendering)
+  const VT = ViewTransition;
+  const content = VT ? <VT>{children}</VT> : children;
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={font.className}>
         <ThemeProvider attribute="class">
           <Navbar />
-          <ViewTransition>{children}</ViewTransition>
+          {content}
           <ToasterwithTheme />
         </ThemeProvider>
       </body>
     </html>
   );
 }
+
