@@ -9,6 +9,15 @@ const zenmux = createOpenAICompatible({
   apiKey: process.env.ZENMUX_API_KEY || "",
 });
 
+const ollamaClient = createOpenAICompatible({
+  name: "ollama",
+  baseURL: "https://fibrinous-conchiferous-gabriella.ngrok-free.dev/v1",
+  apiKey: "dummy",
+  headers: {
+    "ngrok-skip-browser-warning": "true"
+  }
+});
+
 function getGroqClients() {
   const keysStr = process.env.GROQ_API_KEYS || "";
   const keys = keysStr.split(",").map((k) => k.trim()).filter(Boolean);
@@ -37,22 +46,16 @@ export async function generateAIContent(
     `- Output only the paragraph, with no headings or extra text.`,
   ].join("\n");
 
-  const groqClients = getGroqClients();
-
-  // Try Groq keys in sequence
-  for (let i = 0; i < groqClients.length; i++) {
-    const groqClient = groqClients[i];
-    try {
-      console.log(`Attempting content generation with Groq key index ${i}...`);
-      const { text } = await generateText({
-        model: groqClient("meta-llama/llama-4-scout-17b-16e-instruct"),
-        system: systemPrompt,
-        prompt: promptText,
-      });
-      return text.trim();
-    } catch (error) {
-      console.warn(`Groq key index ${i} failed:`, error);
-    }
+  try {
+    console.log(`Attempting content generation with local Ollama via Ngrok...`);
+    const { text } = await generateText({
+      model: ollamaClient("llama3.1"),
+      system: systemPrompt,
+      prompt: promptText,
+    });
+    return text.trim();
+  } catch (error) {
+    console.warn(`Ollama generation failed:`, error);
   }
 
   // Fallback to ZenMux (GLM 4.7 Flash Free)
