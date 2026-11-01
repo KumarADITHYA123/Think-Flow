@@ -3,30 +3,17 @@
 import { generateText } from "ai";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 
+const omnirouteClient = createOpenAICompatible({
+  name: "omniroute",
+  baseURL: process.env.OMNIROUTE_BASE_URL || "http://127.0.0.1:20128/v1",
+  apiKey: process.env.OMNIROUTE_API_KEY || "sk-fe9789691b334c1d-79c517-37724f60",
+});
+
 const zenmux = createOpenAICompatible({
   name: "zenmux",
   baseURL: process.env.ZENMUX_BASE_URL || "",
   apiKey: process.env.ZENMUX_API_KEY || "",
 });
-
-const ollamaClient = createOpenAICompatible({
-  name: "ollama",
-  baseURL: "https://fibrinous-conchiferous-gabriella.ngrok-free.dev/v1",
-  apiKey: "dummy",
-  headers: {
-    "ngrok-skip-browser-warning": "true"
-  }
-});
-
-function getGroqClients() {
-  const keysStr = process.env.GROQ_API_KEYS || "";
-  const keys = keysStr.split(",").map((k) => k.trim()).filter(Boolean);
-  return keys.map((key, index) => createOpenAICompatible({
-    name: `groq-${index}`,
-    baseURL: "https://api.groq.com/openai/v1",
-    apiKey: key,
-  }));
-}
 
 export async function generateAIContent(
   mainTopic: string,
@@ -46,20 +33,23 @@ export async function generateAIContent(
     `- Output only the paragraph, with no headings or extra text.`,
   ].join("\n");
 
+  const modelName = process.env.OMNIROUTE_MODEL || "antigravity/gemini-3.8-flash-high";
+
+  // Primary: OmniRoute Gemini 3.8 Flash
   try {
-    console.log(`Attempting content generation with local Ollama via Ngrok...`);
+    console.log(`Attempting content generation with OmniRoute (${modelName})...`);
     const { text } = await generateText({
-      model: ollamaClient("llama3.1"),
+      model: omnirouteClient(modelName),
       system: systemPrompt,
       prompt: promptText,
     });
     return text.trim();
   } catch (error) {
-    console.warn(`Ollama generation failed:`, error);
+    console.warn(`OmniRoute generation with ${modelName} failed:`, error);
   }
 
   // Fallback to ZenMux (GLM 4.7 Flash Free)
-  console.warn("All Groq keys failed. Falling back to ZenMux...");
+  console.warn("OmniRoute failed. Falling back to ZenMux...");
   try {
     const { text } = await generateText({
       model: zenmux("z-ai/glm-4.7-flash-free"),
